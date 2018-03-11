@@ -6,6 +6,7 @@ by ascending order.
 */
 
 #include <iostream>
+
 using namespace std;
 
 /*
@@ -18,35 +19,28 @@ pre: takes an array of ints, the starting int, and the size (or end bound)
 post: returns the index of the smallest number in the array.
 */
 void sortIntegers(int x[], int startBound, int endBound);
-int indexOfSmallest(int x[], int startingIndex, int size);
 
-int main()
-{
-	int x[] = { 20, 5, 60, 2, 1, 10, 13 };
-	int size = 6;
+int indexOfSmallest(const int x[], int startingIndex, int size);
 
-	cout << "Given:\n";
-	for (int i = 0; i <= size; i++)
-	{
-		cout << "x[" << i << "] == " << x[i] << endl;
-	}
+int main() {
+    int x[] = {20, 5, 60, 2, 1, 10, 13};
+    int size = 6;
 
-	cout << "\nSorted:\n";
+    cout << "Given:\n";
+    for (int i = 0; i <= size; i++) {
+        cout << "x[" << i << "] == " << x[i] << endl;
+    }
 
-	sortIntegers(x, 0, size);
+    cout << "\nSorted:\n";
 
-	for (int i = 0; i <= size; i++)
-	{
-		cout << "x[" << i << "] == " << x[i] << endl;
-	}
+    sortIntegers(x, 0, size);
 
-	cout << endl;
-	system("pause");
+    for (int i = 0; i <= size; i++) {
+        cout << "x[" << i << "] == " << x[i] << endl;
+    }
+
+    cout << endl;
 }
-
-
-
-
 
 
 /*
@@ -55,23 +49,14 @@ Uses a recursive loop, and the indexOfSmallest function, to
 find the index of the smallest number, and make it the first
 in the array. Stops once start is greater than end.
 */
-void sortIntegers(int x[], int startBound, int endBound)
-{
-	int smallestIndex;
-	if (startBound > endBound)
-	{
-		return;
-	}
-	else
-	{
-		swap(x[indexOfSmallest(x, startBound, endBound)], x[startBound]);
-		sortIntegers(x, startBound + 1, endBound);
-	}
+void sortIntegers(int x[], int startBound, int endBound) {
+    if (startBound > endBound) {
+        return;
+    } else {
+        swap(x[indexOfSmallest(x, startBound, endBound)], x[startBound]);
+        sortIntegers(x, startBound + 1, endBound);
+    }
 }
-
-
-
-
 
 
 /*
@@ -79,18 +64,15 @@ Takes an array of integers, a starting point, and the size (or end bound).
 Compares each member of the array to the starting value until the smallest
 is found, and returns the index to that smallest number.
 */
-int indexOfSmallest(int x[], int startingIndex, int size)
-{
-	int targetIndex = startingIndex;
+int indexOfSmallest(const int x[], int startingIndex, int size) {
+    int targetIndex = startingIndex;
 
-	for (int count = startingIndex + 1; count <= size; count++)
-	{
-		if (x[count] < x[targetIndex])
-		{
-			targetIndex = count;
-		}
-	}
-	return targetIndex;
+    for (int count = startingIndex + 1; count <= size; count++) {
+        if (x[count] < x[targetIndex]) {
+            targetIndex = count;
+        }
+    }
+    return targetIndex;
 }
 
 
@@ -119,5 +101,5 @@ x[4] == 13
 x[5] == 20
 x[6] == 60
 
-Press any key to continue . . .
+Process finished with exit code 0
 */
